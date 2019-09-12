@@ -1,0 +1,73 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion build_version.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion build_version.minSdkVersion
+        targetSdkVersion build_version.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation libs.appcompat
+    implementation libs.design
+    implementation libs.recyclerview
+
+    api libs.kotlin_stdlib
+    api libs.kotlin_coroutines
+
+    api libs.jetpack_lifecycle_extensions
+    api libs.jetpack_lifecycle_java8
+    kapt libs.jetpack_lifecycle_compiler
+    api libs.jetpack_viewmodel
+
+    // rx
+    api libs.rxkotlin
+    api libs.rxandroid
+
+    api libs.rxbinding
+    api libs.rxbinding_appcompat
+    api libs.rxbinding_recyclerview
+
+    // kodein
+    api libs.kodein
+    api libs.kodein_android
+    api libs.kodein_androidx
+
+    //autodispose
+    api libs.autodispose
+    api libs.autodispose_ktx
+    api libs.autodispose_android_ktx
+    api libs.autodispose_archs_ktx
+
+}
